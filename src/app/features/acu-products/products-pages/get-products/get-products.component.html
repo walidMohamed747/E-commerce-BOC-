@@ -76,11 +76,12 @@
             mat-stroked-button
             (click)="addProduct(card)"
             style="color: green"
-          ><mat-icon>shopping_cart</mat-icon>
+          >
+            <mat-icon>shopping_cart</mat-icon>
             Add To Card
           </button>
           <button
-            class="col-4 col-lg-4 "
+            class="col-4 col-lg-4"
             mat-stroked-button
             color="warn"
             style="margin-left: 11px"
@@ -91,21 +92,34 @@
         </div>
       </div>
 
-      <div class="col-12" >
+      <div class="col-12">
         <button
           mat-raised-button
           matBadge=" {{ Qty }}"
           matBadgePosition="after"
           matBadgeColor="warn"
-          style="width: 100%; color: rgb(59, 59, 59);"
+          style="width: 100%; color: rgb(59, 59, 59)"
           [matBadgeHidden]="hidden"
-
         >
-        <mat-icon>store</mat-icon> MarketPlace
+          <mat-icon>store</mat-icon> MarketPlace
         </button>
       </div>
     </mat-card-actions>
   </mat-card>
+
+  <!-- empty Data -->
+  <nz-empty
+    *ngIf="dataSource.data.length == 0"
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="contentTpl"
+  >
+    <ng-template #contentTpl>
+      <h4 style="color: #3075ba">
+        {{ "No Cards Added Yet!" }}
+      </h4>
+      <p>{{ "You'll see the cards once the data is exist!" }}</p>
+    </ng-template>
+  </nz-empty>
 </div>
 <!-- pagination section -->
 <footer class="footer">

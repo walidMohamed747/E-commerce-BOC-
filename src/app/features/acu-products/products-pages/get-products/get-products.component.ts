@@ -181,7 +181,7 @@ export class GetProductsComponent {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Your Product added successfully',
+          detail: ' Product added successfully to your card!',
           life: 3000,
         });
         this.blockedUi = false;
