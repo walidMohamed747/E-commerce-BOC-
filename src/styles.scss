@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+// angular rating
+// for adminLTE them
+.wrapper .content-wrapper {
+  min-height: calc(100vh - calc(3.5rem + 1px)) !important;
+}
+
+.p-confirm-popup {
+  z-index: 1038 !important;
+}
+
+button:focus {
+  outline: unset !important;
+}
+
+label {
+  margin-bottom: unset;
+}
+
+.anticon {
+  vertical-align: 0.1em;
+}
+
+// End adminLTE them
+// angular matrial
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import '~css-star-rating/scss/star-rating';
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

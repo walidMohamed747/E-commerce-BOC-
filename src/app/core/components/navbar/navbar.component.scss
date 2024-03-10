@@ -1,0 +1,35 @@
+.bell {
+  font-size: large;
+}
+
+.customStyle {
+  min-width: 450px;
+  height: 206px;
+  overflow: auto;
+}
+
+.bellIcon {
+  margin: auto;
+  font-size: xx-large;
+  margin-right: 18px;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: unset;
+  text-decoration: unset;
+  background-color: unset;
+}
+.brand-image{
+  width: 200px;
+  height: 5px;
+}
+//  Style for the bell icon when it is clicked to
+.demo-section + .demo-section {
+  margin-top: 16px;
+}
+.nav-link{
+  font-size: 18px;
+  font-weight: 800;
+  margin-left: 50%;
+}

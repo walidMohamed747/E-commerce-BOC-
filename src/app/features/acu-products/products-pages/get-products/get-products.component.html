@@ -1,0 +1,129 @@
+<!-- Actions -->
+<div class="p-grid m-5">
+  <div class="p-lg-4 d-flex justify-content-around align-items-center">
+    <mat-form-field class="col-md-5 col-md-5 col-sm-6">
+      <mat-label>{{ "Filter" }}</mat-label>
+      <input
+        matInput
+        (keyup)="searchInput$.next(input.value)"
+        clearaple="true"
+        placeholder="Ex. Mia"
+        #input
+      />
+      <mat-icon matPrefix>search</mat-icon>
+      <button
+        *ngIf="input.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="input.value = ''; searchInput$.next('')"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field class="col-md-5 col-md-5 col-sm-6 col-lg-5">
+      <mat-label>Categories</mat-label>
+      <mat-select
+        [(ngModel)]="selectedCategory"
+        (selectionChange)="filterCategory()"
+      >
+        <!-- <mat-option value="all" selected> <h3> All</h3> </mat-option> -->
+        <mat-option *ngFor="let category of categoris" value="{{ category }}">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div
+    class="col-lg-12 col-md-6 d-flex justify-content-around align-items-center"
+  ></div>
+</div>
+<!-- Cards -->
+<div class="grid mt-5 content">
+  <mat-card *ngFor="let card of dataSource.data" class="example-card">
+    <!-- Card Header Section -->
+    <nz-ribbon nzText=" Discount:{{ card.discountPercentage }}%" nzColor="red">
+      <mat-card-header>
+        <mat-card-title class="card-title">{{ card.title }}</mat-card-title>
+      </mat-card-header>
+    </nz-ribbon>
+
+    <mat-divider></mat-divider>
+    <!-- Image Section -->
+    <img [src]="card.thumbnail" class="image" />
+    <!-- Content Section -->
+    <mat-card-content class="card-content">
+      <p>
+        {{ card.description }}
+      </p>
+      <mat-icon matBadge="15" matBadgeColor="warn">home</mat-icon>
+    </mat-card-content>
+    <div class="col-12">
+      <p-rating
+        class="rating"
+        [(ngModel)]="card.rating"
+        [readonly]="true"
+        [cancel]="false"
+      ></p-rating>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- Actions Section -->
+    <mat-card-actions class="d-grid">
+      <div class="row justify-content-between">
+        <div class="col-lg-12 justify-content-between">
+          <button
+            class="col-lg-7"
+            mat-stroked-button
+            (click)="addProduct(card)"
+            style="color: green"
+          ><mat-icon>shopping_cart</mat-icon>
+            Add To Card
+          </button>
+          <button
+            class="col-4 col-lg-4 "
+            mat-stroked-button
+            color="warn"
+            style="margin-left: 11px"
+            (click)="showDetails(card)"
+          >
+            Details
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12" >
+        <button
+          mat-raised-button
+          matBadge=" {{ Qty }}"
+          matBadgePosition="after"
+          matBadgeColor="warn"
+          style="width: 100%; color: rgb(59, 59, 59);"
+          [matBadgeHidden]="hidden"
+
+        >
+        <mat-icon>store</mat-icon> MarketPlace
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!-- pagination section -->
+<footer class="footer">
+  <mat-paginator
+    #paginator
+    [pageSize]="10"
+    [length]="totalData"
+    [pageSizeOptions]="pageSizes"
+    showFirstLastButtons
+  ></mat-paginator>
+</footer>
+<!-- spinner -->
+<p-blockUI [baseZIndex]="10001" [blocked]="blockedUi">
+  <p-progressSpinner
+    styleClass="custom-spinner"
+    [style]="{ width: '8vh', height: '16vw' }"
+    strokeWidth="3"
+  >
+  </p-progressSpinner>
+</p-blockUI>
+<p-toast></p-toast>
